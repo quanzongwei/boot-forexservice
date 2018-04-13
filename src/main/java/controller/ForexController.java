@@ -32,8 +32,8 @@ public class ForexController {
     @RequestMapping(value = "/f/{from}/t/{to}", method = RequestMethod.GET)
     public Exchange hello(HttpServletRequest request, @PathVariable(name = "from") String from, @PathVariable(name = "to") String to) {
         Exchange one = forexRepository.findFirstByCurrencyFromAndCurrencyTo(from, to);
-        // System.out.println(Integer.valueOf(environment.getProperty("local.sever.port")));
         System.out.println(environment.getProperty("local.server.port"));
+        one.setPort(Double.valueOf(environment.getProperty("local.server.port")).intValue());
         return one;
 
     }
